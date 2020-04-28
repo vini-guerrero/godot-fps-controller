@@ -81,7 +81,10 @@ func _generateFPSNodes():
 	fpsHUD = CanvasLayer.new()
 	fpsHUDControl = Control.new()
 	fpsHUDAim = TextureRect.new()
-	fpsHUDAim.texture = targetTexture
+	if not targetTexture: 
+		var defaultTargetTexture : Texture = load("res://addons/fps_controller/crosshair_default.png")
+		fpsHUDAim.texture = defaultTargetTexture
+	else: fpsHUDAim.texture = targetTexture
 	fpsHUDAim.rect_position = targetPosition
 	fpsHUDControl.add_child(fpsHUDAim)
 	fpsHUD.add_child(fpsHUDControl)
